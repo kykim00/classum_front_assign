@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'Noto Sans KR', sans-serif;
         background-color: ${({ theme }) => theme.colors.background};
+        padding-top: 20px;
         }
     a {
     color: inherit;

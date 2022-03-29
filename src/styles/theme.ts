@@ -6,7 +6,7 @@ const colors = {
   background: "#f0ebf8",
   white: "#ffffff",
   black: "#000000",
-  purple: "673ab7",
+  purple: "#673ab7",
   gray: "#323D45",
   border: "#E5E5E5",
   toggleOn1: "#673ab7",
