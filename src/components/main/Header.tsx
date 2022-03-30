@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { CardContainer } from "../common/CardContainer";
-import { TextInput } from "../common/input";
+import { TextInput } from "../common/TextInput";
 
 export const Header = () => {
   const [title, setTitle] = useState("제목없는 설문지");
