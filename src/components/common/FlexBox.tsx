@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
-interface FlexBoxProps {
+interface FlexBoxStyledProps {
+  justifyContent?: string;
+}
+interface FlexBoxProps extends FlexBoxStyledProps {
   children: React.ReactNode;
 }
 
-export const FlexBox = ({ children }: FlexBoxProps) => {
-  return <FlexContainer>{children}</FlexContainer>;
+export const FlexBox = ({
+  justifyContent = "space-between",
+  children,
+}: FlexBoxProps) => {
+  return (
+    <FlexContainer justifyContent={justifyContent}>{children}</FlexContainer>
+  );
 };
 
-const FlexContainer = styled.div`
+const FlexContainer = styled.div<FlexBoxStyledProps>`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ justifyContent }) => justifyContent};
   margin-bottom: 12px;
 `;
