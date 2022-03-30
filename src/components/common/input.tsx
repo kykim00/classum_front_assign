@@ -4,11 +4,12 @@ interface TextInputStyledProps {
   width?: string;
   fontSize?: string;
   border?: string;
+  disabled?: boolean;
 }
 
 interface TextInputProps extends TextInputStyledProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
 
@@ -19,6 +20,7 @@ export const TextInput = ({
   fontSize = "16px",
   border,
   placeholder,
+  disabled = false,
 }: TextInputProps) => {
   return (
     <>
@@ -29,6 +31,7 @@ export const TextInput = ({
         fontSize={fontSize}
         border={border}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </>
   );
@@ -37,6 +40,7 @@ export const TextInput = ({
 const Input = styled.input<TextInputStyledProps>`
   width: ${({ width }) => width};
   font-size: ${({ fontSize }) => fontSize};
+  background-color: ${({ theme }) => theme.colors.white};
   border: none;
   box-sizing: border-box;
   line-height: 135%;
@@ -49,4 +53,5 @@ const Input = styled.input<TextInputStyledProps>`
     transition: 0.1s ease;
     border-bottom: 2px solid ${({ theme }) => theme.colors.purple};
   }
+  ${({ disabled }) => disabled && `border-bottom: 1px solid #ccc;`}
 `;
