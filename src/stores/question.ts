@@ -133,7 +133,9 @@ const question = createSlice({
       const question = state.find((item) => item.id === id);
       question &&
         question.answers.splice(
-          question.answers.findIndex((item) => item === answerId),
+          question.answers.findIndex(
+            (item) => item.id === answerId && item.answer
+          ),
           1
         );
     },
