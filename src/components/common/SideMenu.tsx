@@ -1,21 +1,26 @@
 import { Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { AddIcon } from "../../assets";
-import { addQuestion, questionSelector } from "../../stores/question";
+import { AddIcon, PreviewIcon } from "../../assets";
+import { addQuestion } from "../../stores/question";
 
-export const SideMenu = () => {
-  const questions = useSelector(questionSelector);
-  const { id, type } = questions[0];
+export const SideMenu = ({ length }: { length: number }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onClickAddQuestion = () => {
-    dispatch(addQuestion({ id: questions.length + 1 }));
+    dispatch(addQuestion({ id: length + 1 }));
   };
-
+  const onClickPreview = () => {
+    navigate("/preview");
+  };
   return (
     <SideMenuContainer>
       <Button onClick={onClickAddQuestion}>
         <img src={AddIcon} alt="Add Question"></img>
+      </Button>
+      <Button onClick={onClickPreview}>
+        <img src={PreviewIcon} alt="Preview"></img>
       </Button>
     </SideMenuContainer>
   );
