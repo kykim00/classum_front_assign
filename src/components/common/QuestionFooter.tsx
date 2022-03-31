@@ -1,29 +1,33 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { CopyIcon, TrashIcon } from "../../assets";
+import { copyQuestion, questionSelector } from "../../stores/question";
 import { FlexBox } from "./FlexBox";
 import { Toggle } from "./ToggleButton";
 
-export const QuestionFooter = () => {
-  const [isEssential, setIsEssential] = useState(false);
+interface FooterProps {
+  isEssential: boolean;
+  onToggle: () => void;
+}
 
-  const onToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsEssential(!isEssential);
-  };
-
-  const onCopyButtonClick = () => {
-    console.log("add question");
+export const QuestionFooter = ({ isEssential, onToggle }: FooterProps) => {
+  const questions = useSelector(questionSelector);
+  const { id, type, options, title } = questions[0];
+  const dispatch = useDispatch();
+  const onClickCopyQuestion = () => {
+    dispatch(copyQuestion({ ...questions[0], id: id }));
   };
   return (
     <Footer>
       <UnderLine />
       <FlexBox justifyContent="flex-end">
-        <Button onClick={onCopyButtonClick}>
-          <img src={CopyIcon} alt="add" />
+        <Button onClick={onClickCopyQuestion}>
+          <img src={CopyIcon} alt="Copy Question" />
         </Button>
         <Button>
-          <img src={TrashIcon} alt="add" />
+          <img src={TrashIcon} alt="Delete Question" />
         </Button>
         <Toggle onToggle={onToggle} checked={isEssential} />
       </FlexBox>

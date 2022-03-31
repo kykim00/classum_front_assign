@@ -4,19 +4,30 @@ import { FlexBox } from "../common/FlexBox";
 import { TextInput } from "../common/TextInput";
 import { OptionList } from "../common/OptionList";
 import { QuestionFooter } from "../common/QuestionFooter";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeEssential,
+  changeTitle,
+  questionSelector,
+} from "../../stores/question";
 
 export const ShortQuestion = () => {
-  const [questionTitle, setQuestionTitle] = useState("제목없는 질문");
-
-  const onQuestionTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuestionTitle(e.target.value);
+  const questions = useSelector(questionSelector);
+  console.log(questions);
+  const { id, type, title, isEssential } = questions[0];
+  const dispatch = useDispatch();
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeTitle({ id: id, title: e.target.value }));
+  };
+  const onToggleEssential = () => {
+    dispatch(changeEssential({ id: id, isEssential: !isEssential }));
   };
   return (
     <CardContainer>
       <FlexBox>
         <TextInput
-          onChange={onQuestionTitleChange}
-          value={questionTitle}
+          onChange={onChangeTitle}
+          value={title}
           width="50%"
           placeholder="질문"
         />
@@ -28,7 +39,7 @@ export const ShortQuestion = () => {
         fontSize="14px"
         disabled={true}
       />
-      <QuestionFooter />
+      <QuestionFooter isEssential={isEssential} onToggle={onToggleEssential} />
     </CardContainer>
   );
 };
