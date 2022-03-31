@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface TextInputStyledProps {
   width?: string;
   fontSize?: string;
-  border?: string;
+  border?: boolean;
   disabled?: boolean;
   optionId?: number;
 }
@@ -19,7 +19,7 @@ export const TextInput = ({
   value,
   width = "100%",
   fontSize = "16px",
-  border,
+  border = false,
   placeholder,
   disabled = false,
   optionId,
@@ -45,6 +45,7 @@ const Input = styled.input<TextInputStyledProps>`
   font-size: ${({ fontSize }) => fontSize};
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
+  border-bottom: ${({ border }) => (border ? "1px solid #e6e6e6" : "none")};
   box-sizing: border-box;
   line-height: 135%;
   &:hover {
