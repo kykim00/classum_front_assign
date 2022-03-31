@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HeaderPurpleLine = styled.div`
+export const HeaderPurpleLine = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -11,4 +11,10 @@ const HeaderPurpleLine = styled.div`
   background-color: ${({ theme }) => theme.colors.purple};
 `;
 
-export default HeaderPurpleLine;
+export const QuestionTitle = styled.h3`
+  margin-bottom: 20px;
+`;
+
+export const RedPoint = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+`;

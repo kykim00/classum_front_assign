@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { CopyIcon, TrashIcon } from "../../assets";
 import { changeEssential, copyQuestion, Question } from "../../stores/question";
-import { FlexBox } from "./FlexBox";
+import { FlexBox } from "./layouts/FlexBox";
 import { Toggle } from "./ToggleButton";
 
 export const QuestionFooter = ({ question }: { question: Question }) => {

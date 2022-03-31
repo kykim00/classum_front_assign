@@ -9,8 +9,8 @@ import {
   Question,
   removeOption,
 } from "../../stores/question";
-import { CardContainer } from "../common/CardContainer";
-import { FlexBox } from "../common/FlexBox";
+import { CardContainer } from "../common/layouts/CardContainer";
+import { FlexBox } from "../common/layouts/FlexBox";
 import { OptionList } from "../common/OptionList";
 import { QuestionFooter } from "../common/QuestionFooter";
 import { TextInput } from "../common/TextInput";

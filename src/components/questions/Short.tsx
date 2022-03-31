@@ -1,5 +1,5 @@
-import { CardContainer } from "../common/CardContainer";
-import { FlexBox } from "../common/FlexBox";
+import { CardContainer } from "../common/layouts/CardContainer";
+import { FlexBox } from "../common/layouts/FlexBox";
 import { TextInput } from "../common/TextInput";
 import { OptionList } from "../common/OptionList";
 import { QuestionFooter } from "../common/QuestionFooter";
