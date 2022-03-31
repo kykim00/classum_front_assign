@@ -7,12 +7,18 @@ interface Option {
   option: string;
 }
 
+interface Answer {
+  id: number;
+  answer: string;
+}
+
 export interface Question {
   id: number;
   type: string;
   title: string;
   isEssential: boolean;
   options: Option[];
+  answers: Answer[];
 }
 
 const initialState: Question[] = [
@@ -25,6 +31,12 @@ const initialState: Question[] = [
       {
         id: 1,
         option: "옵션 1",
+      },
+    ],
+    answers: [
+      {
+        id: 1,
+        answer: "",
       },
     ],
   },
@@ -97,11 +109,33 @@ const question = createSlice({
     copyQuestion: (state, action: PayloadAction<Question>) => {
       const { id } = action.payload;
       const question = state.find((item) => item.id === id)!;
-      console.log(question);
       state.unshift({
         ...question,
         id: state.length + 1,
       });
+    },
+    setSingleAnswer: (state, action) => {
+      const { id, answer } = action.payload;
+      const question = state.find((item) => item.id === id);
+      question && (question.answers[0].answer = answer);
+    },
+    setMultipleAnswer: (state, action) => {
+      const { id, answerId, answer } = action.payload;
+      const question = state.find((item) => item.id === id);
+      question &&
+        question.answers.push({
+          id: answerId,
+          answer,
+        });
+    },
+    removeAnswer: (state, action) => {
+      const { id, answerId } = action.payload;
+      const question = state.find((item) => item.id === id);
+      question &&
+        question.answers.splice(
+          question.answers.findIndex((item) => item === answerId),
+          1
+        );
     },
   },
 });
@@ -116,6 +150,9 @@ export const {
   addQuestion,
   removeQuestion,
   copyQuestion,
+  setSingleAnswer,
+  setMultipleAnswer,
+  removeAnswer,
 } = question.actions;
 export const questionSelector = (state: rootState) => state.question;
 export default question;
