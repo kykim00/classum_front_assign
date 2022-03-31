@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import QUESTION_TYPE from "../constants/questionType";
 import { rootState } from ".";
 
@@ -94,6 +94,15 @@ const question = createSlice({
         1
       );
     },
+    copyQuestion: (state, action: PayloadAction<Question>) => {
+      const { id } = action.payload;
+      const question = state.find((item) => item.id === id)!;
+      console.log(question);
+      state.unshift({
+        ...question,
+        id: state.length + 1,
+      });
+    },
   },
 });
 
@@ -106,6 +115,7 @@ export const {
   changeOption,
   addQuestion,
   removeQuestion,
+  copyQuestion,
 } = question.actions;
 export const questionSelector = (state: rootState) => state.question;
 export default question;
