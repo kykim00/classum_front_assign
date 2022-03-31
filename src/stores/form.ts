@@ -23,5 +23,5 @@ const form = createSlice({
 });
 
 export const { setForm } = form.actions;
-export const questionSelector = (state: rootState) => state.form;
+export const formSelector = (state: rootState) => state.form;
 export default form;
