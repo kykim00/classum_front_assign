@@ -3,15 +3,20 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AddIcon, PreviewIcon } from "../../assets";
+import { Form, setForm } from "../../stores/form";
 import { addQuestion } from "../../stores/question";
 
-export const SideMenu = ({ length }: { length: number }) => {
+interface SideMenuProps extends Form {
+  length: number;
+}
+export const SideMenu = ({ title, desc, length }: SideMenuProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onClickAddQuestion = () => {
     dispatch(addQuestion({ id: length + 1 }));
   };
   const onClickPreview = () => {
+    dispatch(setForm({ title, desc }));
     navigate("/preview");
   };
   return (
