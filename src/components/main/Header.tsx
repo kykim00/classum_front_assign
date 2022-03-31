@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { Form } from "../../stores/form";
 import { CardContainer } from "../common/CardContainer";
+import HeaderPurpleLine from "../common/HeaderPurpleLine";
 import { TextInput } from "../common/TextInput";
 
 interface HeaderProps extends Form {
@@ -16,7 +16,7 @@ export const Header = ({
 }: HeaderProps) => {
   return (
     <CardContainer>
-      <PurpleLine />
+      <HeaderPurpleLine />
       <TextInput
         fontSize="32px"
         value={title}
@@ -32,14 +32,3 @@ export const Header = ({
     </CardContainer>
   );
 };
-
-const PurpleLine = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  height: 10px;
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.purple};
-`;
