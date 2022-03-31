@@ -20,5 +20,6 @@ const FlexContainer = styled.div<FlexBoxStyledProps>`
   width: 100%;
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent};
+  align-items: center;
   margin-bottom: 12px;
 `;

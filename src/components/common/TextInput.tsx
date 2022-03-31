@@ -5,6 +5,7 @@ interface TextInputStyledProps {
   fontSize?: string;
   border?: string;
   disabled?: boolean;
+  optionId?: number;
 }
 
 interface TextInputProps extends TextInputStyledProps {
@@ -21,6 +22,7 @@ export const TextInput = ({
   border,
   placeholder,
   disabled = false,
+  optionId,
 }: TextInputProps) => {
   return (
     <>
@@ -32,6 +34,7 @@ export const TextInput = ({
         border={border}
         placeholder={placeholder}
         disabled={disabled}
+        name={optionId?.toString()}
       />
     </>
   );
