@@ -1,5 +1,4 @@
-import { Button } from "@mui/material";
-import { Fragment } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RemoveIcon } from "../../assets";
@@ -25,8 +24,8 @@ export const SingleChoice = () => {
   const onClickAddOption = () => {
     dispatch(addOption({ id: id }));
   };
-  const onClickRemoveOption = () => {
-    dispatch(removeOption({ id: id }));
+  const onClickRemoveOption = (e: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch(removeOption({ id: id, optionId: +e.currentTarget.name }));
   };
   const onChangeOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.name);
@@ -55,9 +54,9 @@ export const SingleChoice = () => {
         />
         <OptionList />
       </FlexBox>
-      {questions[0].options.map(({ option, id }) => {
+      {questions[0].options.map(({ option, id }, index) => {
         return (
-          <FlexBox justifyContent="flex-start" key={id}>
+          <FlexBox justifyContent="flex-start" key={`${index}_${id}`}>
             <RadioImage />
             <TextInput
               value={option}
@@ -66,9 +65,9 @@ export const SingleChoice = () => {
               onChange={onChangeOption}
               optionId={id}
             />
-            <Button onClick={onClickRemoveOption}>
+            <button onClick={onClickRemoveOption} name={id.toString()}>
               <img src={RemoveIcon} alt="Remove Option" />
-            </Button>
+            </button>
           </FlexBox>
         );
       })}
