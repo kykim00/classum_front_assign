@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { changeTitle, Question } from "../../stores/question";
 import React from "react";
 
-const ShortQuestion = ({ question }: { question: Question }) => {
+const LongQuestion = ({ question }: { question: Question }) => {
   const { id, title } = question;
   const dispatch = useDispatch();
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const ShortQuestion = ({ question }: { question: Question }) => {
         <OptionList {...question} />
       </FlexBox>
       <TextInput
-        value="단답형 텍스트"
+        value="장문형 텍스트"
         width="50%"
         fontSize="14px"
         disabled={true}
@@ -36,4 +36,4 @@ const ShortQuestion = ({ question }: { question: Question }) => {
   );
 };
 
-export default React.memo(ShortQuestion);
+export default React.memo(LongQuestion);

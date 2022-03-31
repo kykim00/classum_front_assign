@@ -15,7 +15,7 @@ import { OptionList } from "../common/OptionList";
 import { QuestionFooter } from "../common/QuestionFooter";
 import { TextInput } from "../common/TextInput";
 
-const SingleChoice = ({ question }: { question: Question }) => {
+const MultipleChoice = ({ question }: { question: Question }) => {
   const { id, title, options } = question;
   const dispatch = useDispatch();
   const onClickAddOption = () => {
@@ -51,7 +51,7 @@ const SingleChoice = ({ question }: { question: Question }) => {
       {options.map(({ option, id }, index) => {
         return (
           <FlexBox justifyContent="flex-start" key={`${index}_${id}`}>
-            <RadioImage />
+            <CheckBoxImage />
             <TextInput
               value={option}
               width="70%"
@@ -78,14 +78,13 @@ const SingleChoice = ({ question }: { question: Question }) => {
   );
 };
 
-const RadioImage = styled.span`
+const CheckBoxImage = styled.span`
   width: 16px;
   height: 16px;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+  border-radius: 3px;
   border: solid 2px;
   border-color: rgba(0, 0, 0, 0.54);
   margin-right: 10px;
 `;
 
-export default React.memo(SingleChoice);
+export default React.memo(MultipleChoice);
