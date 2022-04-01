@@ -7,7 +7,7 @@ import {
 } from "../../stores/question";
 import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
-import { QuestionTitle, RedPoint } from "../common/style";
+import { QuestionTitle } from "../common/QuestionTitle";
 
 export const CheckAnswer = ({ id, title, isEssential, options }: Question) => {
   const dispatch = useDispatch();
@@ -25,9 +25,8 @@ export const CheckAnswer = ({ id, title, isEssential, options }: Question) => {
   };
   return (
     <CardContainer>
-      <QuestionTitle>
-        {title} {isEssential && <RedPoint>*</RedPoint>}
-      </QuestionTitle>
+      <QuestionTitle title={title} isEssential={isEssential} />
+
       {options.map((option, index) => (
         <FlexBox key={`${index}_${id}`} justifyContent="flex-start">
           <Checkbox

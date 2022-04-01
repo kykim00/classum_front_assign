@@ -1,9 +1,5 @@
-const Preview = () => {
-  return (
-    <div>
-      <h1>Preview</h1>
-    </div>
-  );
-};
+import { Preview } from "../components/preview";
 
-export default Preview;
+const PreviewPage = () => <Preview />;
+
+export default PreviewPage;

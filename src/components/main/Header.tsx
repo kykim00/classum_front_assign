@@ -1,6 +1,6 @@
 import { Form } from "../../stores/form";
 import { CardContainer } from "../common/layouts/CardContainer";
-import { HeaderPurpleLine } from "../common/style";
+import { HeaderPurpleLine } from "../common/HeaderPurpleLine";
 import { TextInput } from "../common/TextInput";
 
 interface HeaderProps extends Form {

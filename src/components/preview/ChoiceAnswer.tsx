@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Question, setSingleAnswer } from "../../stores/question";
 import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
-import { QuestionTitle, RedPoint } from "../common/style";
+import { QuestionTitle } from "../common/QuestionTitle";
 
 export const ChoiceAnswer = ({ id, title, isEssential, options }: Question) => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -22,9 +22,8 @@ export const ChoiceAnswer = ({ id, title, isEssential, options }: Question) => {
   };
   return (
     <CardContainer>
-      <QuestionTitle>
-        {title} {isEssential && <RedPoint>*</RedPoint>}
-      </QuestionTitle>
+      <QuestionTitle title={title} isEssential={isEssential} />
+
       {options.map((option, index) => (
         <FlexBox key={`${index}_${id}`} justifyContent="flex-start">
           <Radio

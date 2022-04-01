@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { formSelector } from "../../stores/form";
 import { CardContainer } from "../common/layouts/CardContainer";
-import { HeaderPurpleLine } from "../common/style";
+import { HeaderPurpleLine } from "../common/HeaderPurpleLine";
 
 export const PreviewHeader = () => {
   const { title: formTitle, desc: formDesc } = useSelector(formSelector);
