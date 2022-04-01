@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { Question } from "../../stores/question";
 
-export const QuestionTitle = ({ title, isEssential }: Question) => {
+interface QuestionTitleProps {
+  title: string;
+  isEssential: boolean;
+}
+export const QuestionTitle = ({ title, isEssential }: QuestionTitleProps) => {
   return (
     <QuestionTitleContainer>
       {title} {isEssential && <RedPoint>*</RedPoint>}
