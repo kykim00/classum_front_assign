@@ -8,6 +8,7 @@ const colors = {
   black: "#000000",
   purple: "#673ab7",
   gray: "#323D45",
+  red: "#D93025",
   border: "#E5E5E5",
   toggleOn1: "#673ab7",
   toggleOn2: "#BBDEFB",
