@@ -6,12 +6,16 @@ import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
 import { QuestionTitle } from "../common/QuestionTitle";
 
-export const ChoiceAnswer = ({ id, title, isEssential, options }: Question) => {
-  const [selectedValue, setSelectedValue] = useState("");
+export const ChoiceAnswer = ({
+  id,
+  title,
+  isEssential,
+  options,
+  answers,
+}: Question) => {
   const dispatch = useDispatch();
 
   const onChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(e.target.value);
     dispatch(
       setSingleAnswer({
         id: id,
@@ -27,7 +31,7 @@ export const ChoiceAnswer = ({ id, title, isEssential, options }: Question) => {
       {options.map((option, index) => (
         <FlexBox key={`${index}_${id}`} justifyContent="flex-start">
           <Radio
-            checked={selectedValue === option.option}
+            checked={answers.some((answer) => answer.answer === option.option)}
             onChange={onChangeAnswer}
             value={option.option}
             name={`OPTION${option.id}`}

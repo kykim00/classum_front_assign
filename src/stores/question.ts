@@ -139,6 +139,13 @@ const question = createSlice({
           1
         );
     },
+    resetAllAnswers: (state) => {
+      state.forEach((item) => {
+        item.answers.forEach((answer) => {
+          answer.answer = "";
+        });
+      });
+    },
   },
 });
 
@@ -155,6 +162,7 @@ export const {
   setSingleAnswer,
   setMultipleAnswer,
   removeAnswer,
+  resetAllAnswers,
 } = question.actions;
 export const questionSelector = (state: rootState) => state.question;
 export default question;

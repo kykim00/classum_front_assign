@@ -9,7 +9,13 @@ import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
 import { QuestionTitle } from "../common/QuestionTitle";
 
-export const CheckAnswer = ({ id, title, isEssential, options }: Question) => {
+export const CheckAnswer = ({
+  id,
+  title,
+  isEssential,
+  options,
+  answers,
+}: Question) => {
   const dispatch = useDispatch();
 
   const onChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +39,7 @@ export const CheckAnswer = ({ id, title, isEssential, options }: Question) => {
             onChange={onChangeAnswer}
             value={option.option}
             name={`OPTION${option.id}`}
+            checked={answers.some((answer) => answer.answer === option.option)}
           />
           <label>{option.option}</label>
         </FlexBox>

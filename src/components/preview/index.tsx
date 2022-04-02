@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { questionSelector } from "../../stores/question";
+import { useDispatch, useSelector } from "react-redux";
+import { questionSelector, resetAllAnswers } from "../../stores/question";
 import { PreviewHeader } from "./PreviewHeader";
 import { TextAnswer } from "./TextAnswer";
 import { ChoiceAnswer } from "./ChoiceAnswer";
@@ -12,6 +12,7 @@ import styled from "styled-components";
 
 export const Preview = () => {
   const questions = useSelector(questionSelector);
+  const dispatch = useDispatch();
   const renderAnswer = () => {
     const answerList = questions.map((question) => {
       if (question.type === QUESTION_TYPE.MULTIPLE_CHOICE) {
@@ -25,15 +26,22 @@ export const Preview = () => {
     });
     return answerList;
   };
+
+  const onClickResetAnswers = () => {
+    dispatch(resetAllAnswers());
+  };
   return (
     <div>
       <PreviewHeader />
       {renderAnswer()}
-      <Link to={"/result"}>
-        <ButtonWrapper>
+      <ButtonWrapper>
+        <Link to={"/result"}>
           <Button variant="contained">제출하기</Button>
-        </ButtonWrapper>
-      </Link>
+        </Link>
+        <Button variant="contained" onClick={onClickResetAnswers}>
+          양식 지우기
+        </Button>
+      </ButtonWrapper>
     </div>
   );
 };
@@ -43,4 +51,5 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  gap: 20px;
 `;

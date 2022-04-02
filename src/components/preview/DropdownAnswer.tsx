@@ -11,6 +11,7 @@ export const DropdownAnswer = ({
   title,
   isEssential,
   options,
+  answers,
 }: Question) => {
   const dispatch = useDispatch();
   const onClickAnswer = (e: SelectChangeEvent) => {
@@ -27,7 +28,11 @@ export const DropdownAnswer = ({
       <QuestionTitle title={title} isEssential={isEssential} />
       <Box sx={{ minWidth: 220 }}>
         <FormControl fullWidth>
-          <Select defaultValue="" onChange={onClickAnswer}>
+          <Select
+            defaultValue=""
+            onChange={onClickAnswer}
+            value={answers[0].answer}
+          >
             {options.map((option, index) => (
               <MenuItem key={`${index}_${id}`} value={option.option}>
                 {option.option}
