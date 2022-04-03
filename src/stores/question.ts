@@ -146,6 +146,15 @@ const question = createSlice({
         });
       });
     },
+    reorderQuestion: (state, action) => {
+      const { newQuestions } = action.payload;
+      state.forEach((item, index) => {
+        item.title = newQuestions[index].title;
+        item.isEssential = newQuestions[index].isEssential;
+        item.options = newQuestions[index].options;
+        item.type = newQuestions[index].type;
+      });
+    },
   },
 });
 
@@ -163,6 +172,7 @@ export const {
   setMultipleAnswer,
   removeAnswer,
   resetAllAnswers,
+  reorderQuestion,
 } = question.actions;
 export const questionSelector = (state: rootState) => state.question;
 export default question;
