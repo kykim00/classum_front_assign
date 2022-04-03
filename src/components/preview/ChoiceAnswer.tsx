@@ -1,5 +1,4 @@
 import { Radio } from "@mui/material";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Question, setSingleAnswer } from "../../stores/question";
 import { CardContainer } from "../common/layouts/CardContainer";
