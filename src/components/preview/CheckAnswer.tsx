@@ -1,4 +1,5 @@
 import { Checkbox } from "@mui/material";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   Question,
@@ -9,7 +10,7 @@ import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
 import { QuestionTitle } from "../common/QuestionTitle";
 
-export const CheckAnswer = ({
+const CheckAnswer = ({
   id,
   title,
   isEssential,
@@ -18,7 +19,7 @@ export const CheckAnswer = ({
 }: Question) => {
   const dispatch = useDispatch();
 
-  const onChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeAnswer = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
       dispatch(
         setMultipleAnswer({
@@ -28,7 +29,8 @@ export const CheckAnswer = ({
         })
       );
     else dispatch(removeAnswer({ id: id, answerId: +e.target.name.slice(-1) }));
-  };
+  }, []);
+
   return (
     <CardContainer>
       <QuestionTitle title={title} isEssential={isEssential} />
@@ -47,3 +49,5 @@ export const CheckAnswer = ({
     </CardContainer>
   );
 };
+
+export default React.memo(CheckAnswer);

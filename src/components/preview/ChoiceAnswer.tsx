@@ -1,11 +1,12 @@
 import { Radio } from "@mui/material";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Question, setSingleAnswer } from "../../stores/question";
 import { CardContainer } from "../common/layouts/CardContainer";
 import { FlexBox } from "../common/layouts/FlexBox";
 import { QuestionTitle } from "../common/QuestionTitle";
 
-export const ChoiceAnswer = ({
+const ChoiceAnswer = ({
   id,
   title,
   isEssential,
@@ -14,15 +15,19 @@ export const ChoiceAnswer = ({
 }: Question) => {
   const dispatch = useDispatch();
 
-  const onChangeAnswer = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(
-      setSingleAnswer({
-        id: id,
-        answerId: 1,
-        answer: e.target.value,
-      })
-    );
-  };
+  const onChangeAnswer = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(
+        setSingleAnswer({
+          id: id,
+          answerId: 1,
+          answer: e.target.value,
+        })
+      );
+    },
+    []
+  );
+
   return (
     <CardContainer>
       <QuestionTitle title={title} isEssential={isEssential} />
@@ -41,3 +46,5 @@ export const ChoiceAnswer = ({
     </CardContainer>
   );
 };
+
+export default React.memo(ChoiceAnswer);

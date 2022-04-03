@@ -1,12 +1,13 @@
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Question, setSingleAnswer } from "../../stores/question";
 import { CardContainer } from "../common/layouts/CardContainer";
 import { QuestionTitle } from "../common/QuestionTitle";
 
-export const DropdownAnswer = ({
+const DropdownAnswer = ({
   id,
   title,
   isEssential,
@@ -14,7 +15,7 @@ export const DropdownAnswer = ({
   answers,
 }: Question) => {
   const dispatch = useDispatch();
-  const onClickAnswer = (e: SelectChangeEvent) => {
+  const onClickAnswer = useCallback((e: SelectChangeEvent) => {
     dispatch(
       setSingleAnswer({
         id: id,
@@ -22,7 +23,8 @@ export const DropdownAnswer = ({
         answer: e.target.value,
       })
     );
-  };
+  },[]);
+
   return (
     <CardContainer>
       <QuestionTitle title={title} isEssential={isEssential} />
@@ -44,3 +46,5 @@ export const DropdownAnswer = ({
     </CardContainer>
   );
 };
+
+export default React.memo(DropdownAnswer);
