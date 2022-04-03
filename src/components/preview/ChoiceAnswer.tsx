@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Radio } from "@mui/material";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Question, setSingleAnswer } from "../../stores/question";
@@ -8,9 +9,14 @@ import { TextInput } from "../common/TextInput";
 const TextAnswer = ({ id, title, isEssential, answers }: Question) => {
   const dispatch = useDispatch();
 
-  const onChangeAnswer = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSingleAnswer({ id: id, answerId: 1, answer: e.target.value }));
-  }, []);
+  const onChangeAnswer = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(
+        setSingleAnswer({ id: id, answerId: 1, answer: e.target.value })
+      );
+    },
+    []
+  );
 
   return (
     <CardContainer>

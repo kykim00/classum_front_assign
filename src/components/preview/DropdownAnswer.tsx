@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
@@ -23,7 +24,7 @@ const DropdownAnswer = ({
         answer: e.target.value,
       })
     );
-  },[]);
+  }, []);
 
   return (
     <CardContainer>
