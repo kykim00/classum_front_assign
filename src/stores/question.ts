@@ -155,6 +155,14 @@ const question = createSlice({
         item.type = newQuestions[index].type;
       });
     },
+    reorderOption: (state, action) => {
+      const { id, newOptions } = action.payload;
+      const question = state.find((item) => item.id === id);
+      question &&
+        question.options.forEach((item, index) => {
+          item.option = newOptions[index].option;
+        });
+    },
   },
 });
 
@@ -173,6 +181,7 @@ export const {
   removeAnswer,
   resetAllAnswers,
   reorderQuestion,
+  reorderOption,
 } = question.actions;
 export const questionSelector = (state: rootState) => state.question;
 export default question;
